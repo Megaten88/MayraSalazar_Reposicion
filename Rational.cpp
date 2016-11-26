@@ -117,7 +117,12 @@ string Rational::operator/(Rational& racional){
 }	
 string Rational::toString(){
 	stringstream ss;
-	ss<<numerator<<"/"<<denominator;
+	if (denominator == 1)
+	{
+		ss<<numerator;
+	}else{
+		ss<<numerator<<"/"<<denominator;
+	}
 	return ss.str();
 }
 Rational::~Rational(){
