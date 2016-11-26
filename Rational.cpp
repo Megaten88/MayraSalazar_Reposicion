@@ -61,7 +61,7 @@ string Rational::operator+(Rational& racional){
 	stringstream ss;
 	if (this->denominator == racional.getDenominator())
 	{
-		
+		ss<<this->numerator+racional.getNumerator()<<"/"<<this->denominator<<"\n";	
 	}else{
 		int lcm = Rational::lcm(this->denominator,racional.getDenominator());
 	}
@@ -87,7 +87,7 @@ string Rational::operator/(Rational& racional){
 }	
 string Rational::toString(){
 	stringstream ss;
-	ss<<numerator<<"/"<<denominator<<"\n";
+	ss<<numerator<<"/"<<denominator;
 	return ss.str();
 }
 Rational::~Rational(){
