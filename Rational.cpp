@@ -28,7 +28,7 @@ void Rational::setDenominator(int num){
 Rational::Rational(int numerador, int denominador){
 	Rational::setNumerator(numerador);
 	Rational::setDenominator(denominador);
-	
+
 	int comunDivisor = 0;
 	if (numerador>denominador)
 	{
@@ -36,8 +36,8 @@ Rational::Rational(int numerador, int denominador){
 	}else{
 		comunDivisor = maxDivisor(denominador,numerador);
 	}
-	numerator/comunDivisor;
-	denominator/comunDivisor;
+	numerator = numerator/comunDivisor;
+	denominator = denominator/comunDivisor;
 }
 int Rational::lcm(int a,int b){
 	int maxMultiple = a*b;
@@ -65,15 +65,15 @@ string Rational::operator+(Rational& racional){
 	}else{
 		int lcm = Rational::lcm(this->denominator,racional.getDenominator());
 	}
-
+	return ss.str();
 }
 string Rational::operator-(Rational& racional){
 
 }
 string Rational::operator*(Rational& racional){
 	stringstream ss;
-	int newNumerator = this->numerator * racional.getNumerator();
-	int newDenominator = this-> numerator * racional.getDenominator();
+	int newNumerator = this->numerator*racional.getNumerator();
+	int newDenominator = this-> denominator*racional.getDenominator();
 	if (newNumerator> newDenominator)
 	{
 		ss<< newNumerator/Rational::maxDivisor(newNumerator,newDenominator)<<"/"<<newDenominator/Rational::maxDivisor(newNumerator,newDenominator)<<"\n";
