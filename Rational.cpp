@@ -40,17 +40,12 @@ Rational::Rational(int numerador, int denominador){
 	denominator = denominator/comunDivisor;
 }
 int Rational::lcm(int a,int b){
-	int maxMultiple = a*b;
-	int lcm = 0;
-	for (int i = 1; i <= maxMultiple; ++i)
+	if (a>b)
 	{
-		if (maxMultiple%i==0 && i%a==0 && i%b==0)
-		{
-			lcm = i;
-			break;
-		}
+		return (a*b)/Rational::maxDivisor(a,b);
+	}else{
+		return (a*b)/Rational::maxDivisor(b,a);
 	}
-	return lcm;
 }
 int Rational::getNumerator(){
 	return numerator;
@@ -65,8 +60,7 @@ string Rational::operator+(Rational& racional){
 		ss<<this->numerator+racional.getNumerator()<<"/"<<this->denominator<<"\n";	
 	}else{
 		int lcm = Rational::lcm(this->denominator,racional.getDenominator());
-		ss<< (this->numerator*(lcm/this->numerator))-(racional.getNumerator()*(lcm/racional.getNumerator()))<<"/"<<lcm<<"\n";
-		ss<<this->numerator*(lcm/this->numerator);
+		ss<< (this->numerator*(lcm/this->denominator))+(racional.getNumerator()*(lcm/racional.getDenominator()))<<"/"<<lcm<<"\n";
 	}
 	return ss.str();
 }
@@ -81,12 +75,7 @@ string Rational::operator-(Rational& racional){
 		}	
 	}else{
 		int lcm = Rational::lcm(this->denominator,racional.getDenominator());
-		cout<<(lcm/(this->numerator))<<endl;
-		if((this->numerator*(lcm/this->numerator))>(racional.getNumerator()*(lcm/racional.getNumerator()))){
-			ss<< (this->numerator*(lcm/this->numerator))-(racional.getNumerator()*(lcm/racional.getNumerator()))<<"/"<<lcm<<"\n";
-		}else{
-			ss<<(this->numerator*(lcm/this->numerator))-(racional.getNumerator()*(lcm/racional.getNumerator()))<<"/"<<lcm<<"\n";
-		}
+		ss<<(this->numerator*(lcm/this->denominator))-(racional.getNumerator()*(lcm/racional.getDenominator()))<<"/"<<lcm<<"\n";
 	}
 	return ss.str();
 }
