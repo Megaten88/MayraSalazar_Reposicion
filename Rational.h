@@ -9,6 +9,7 @@ private:
 	int maxDivisor(int,int);
 	void setNumerator(int);
 	void setDenominator(int);
+	int lcm(int,int);
 public:
 	Rational(int, int);
 	string toString();
