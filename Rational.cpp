@@ -64,26 +64,60 @@ string Rational::operator+(Rational& racional){
 		ss<<this->numerator+racional.getNumerator()<<"/"<<this->denominator<<"\n";	
 	}else{
 		int lcm = Rational::lcm(this->denominator,racional.getDenominator());
+		int factor1 = lcm/this->numerador;
+		int factor2 = lcm/racional.getNumerator();
+		ss<< this->numerator + racional.getNumerator <<"/"<<lcm<<"\n";
 	}
 	return ss.str();
 }
 string Rational::operator-(Rational& racional){
-
+	stringstream ss;
+	if (this->denominator == racional.getDenominator())
+	{
+		ss<<this->numerator-racional.getNumerator()<<"/"<<this->denominator<<"\n";	
+	}else{
+		int lcm = Rational::lcm(this->denominator,racional.getDenominator());
+		int factor1 = lcm/this->numerador;
+		int factor2 = lcm/racional.getNumerator();
+		ss<< this->numerator - racional.getNumerator <<"/"<<lcm<<"\n";
+	}
+	return ss.str();
 }
 string Rational::operator*(Rational& racional){
 	stringstream ss;
-	int newNumerator = this->numerator*racional.getNumerator();
-	int newDenominator = this-> denominator*racional.getDenominator();
-	if (newNumerator> newDenominator)
+	if (this->numerator == 0 || racional.getNumerator() == 0)
 	{
-		ss<< newNumerator/Rational::maxDivisor(newNumerator,newDenominator)<<"/"<<newDenominator/Rational::maxDivisor(newNumerator,newDenominator)<<"\n";
+
+		ss<<0<<"\n";
 	}else{
+		int newNumerator = this->numerator*racional.getNumerator();
+		int newDenominator = this-> denominator*racional.getDenominator();
+		if (newNumerator> newDenominator)
+		{
+			ss<< newNumerator/Rational::maxDivisor(newNumerator,newDenominator)<<"/"<<newDenominator/Rational::maxDivisor(newNumerator,newDenominator)<<"\n";
+		}else{
 		ss<< newNumerator/Rational::maxDivisor(newDenominator,newNumerator)<<"/"<<newDenominator/Rational::maxDivisor(newDenominator,newNumerator)<<"\n";
+		}
 	}
 	return ss.str();
 }
 string Rational::operator/(Rational& racional){
+	stringstream ss;
+	if (this->numerator == 0 || racional.getNumerator() == 0)
+	{
 
+		ss<<0<<"\n";
+	}else{
+		int newNumerator = this->numerator*racional.getDenominator();
+		int newDenominator = this-> denominator*racional.getNumerator();
+		if (newNumerator> newDenominator)
+		{
+			ss<< newNumerator/Rational::maxDivisor(newNumerator,newDenominator)<<"/"<<newDenominator/Rational::maxDivisor(newNumerator,newDenominator)<<"\n";
+		}else{
+		ss<< newNumerator/Rational::maxDivisor(newDenominator,newNumerator)<<"/"<<newDenominator/Rational::maxDivisor(newDenominator,newNumerator)<<"\n";
+		}
+	}
+	return ss.str();
 }	
 string Rational::toString(){
 	stringstream ss;
@@ -91,5 +125,5 @@ string Rational::toString(){
 	return ss.str();
 }
 Rational::~Rational(){
-
+	cout<<"Eliminando fracción";
 }
